@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-image: url("bg-image.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 10px;
+            width: 200px;
+        }
+
+        .container {
+            border: solid black 2px;
+            border-radius: 10px;
+            width: fit-content;
+            padding: 50px;
+            background-color: antiquewhite;
+
+
+        }
+
+        #name,
+        #email,
+        #password {
+            border: none;
+            border-bottom: solid orangered 2px;
+            box-shadow: inset;
+            cursor: pointer;
+
+        }
+
+        input:hover {
+            background-color: brown;
+        }
+
+        .one,
+        .two,
+        .three {
+            font-weight: 500;
+            font-size: 20px;
+            padding-bottom: 10px;
+
+        }
+
+        button {
+            padding: 10px;
+            background-color: white;
+            border-radius: 2px;
+            color: black;
+            justify-content: center;
+            background-color: lightblue;
+        }
+
+        #registerForm {
+
+            padding: 20px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <section class="container">
+
+        <h2 style="color:brown">Registration Form</h2>
+
+        <form id="registerForm">
+
+            <label class="one">Name:</label><br>
+            <input type="text" id="name">
+            <div id="nameError" class="error"></div>
+
+            <label class="two">Email:</label><br>
+            <input type="text" id="email">
+            <div id="emailError" class="error"></div>
+
+            <label class="three">Password:</label><br>
+            <input type="password" id="password">
+            <div id="passwordError" class="error"></div>
+
+            <br>
+            <button type="submit">Register</button>
+
+        </form>
+    </section>
+
+    <script>
+
+        document.getElementById("registerForm").addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+            let valid = true;
+
+            document.getElementById("nameError").innerHTML = "";
+            document.getElementById("emailError").innerHTML = "";
+            document.getElementById("passwordError").innerHTML = "";
+
+            // Name Validation
+            if (name === "") {
+                document.getElementById("nameError").innerHTML = "Name is required";
+                valid = false;
+            }
+
+            // Email Validation
+            if (!email.match(emailPattern)) {
+                document.getElementById("emailError").innerHTML = "Enter valid email";
+                valid = false;
+            }
+
+            // Password Validation
+            if (password.length < 6) {
+                document.getElementById("passwordError").innerHTML = "Password must be at least 6 characters";
+                valid = false;
+            }
+
+            if (valid) {
+                alert("Registration Successful");
+            }
+
+        });
+        let form = document.getElementById("registerForm");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();   
+            form.reset();            
+        });
+
+    </script>
+
+</body>
+
+</html>
